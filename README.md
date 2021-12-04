@@ -8,8 +8,10 @@ https://github.com/corevo/theme-pygmalion
 
 https://github.com/adi1090x/polybar-themes
 
-https://draculatheme.com/
-
 https://github.com/dracula/rofi
 
+https://github.com/terroo/fonts
 
+https://github.com/yeyushengfan258/Lyra-Cursors
+
+https://draculatheme.com/
