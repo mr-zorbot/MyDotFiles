@@ -4,9 +4,10 @@ end
 
 # variables
 set -U fish_greeting ""
-set  -x -U PATH $HOME/.local/bin:$PATH
+set -a PATH $HOME/.local/bin
 set -x -U GOPATH $HOME/go
 set -x -U XDG_DATA_DIRS /usr/local/share:/usr/share:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share
+set -x -U QT_QPA_PLATFORMTHEME 'qt5ct'
 
 # common alias
 alias rm="rm -i"
