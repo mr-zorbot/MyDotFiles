@@ -9,7 +9,7 @@ set -x -U GOPATH $HOME/go
 set -x -U XDG_DATA_DIRS /usr/local/share:/usr/share:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share
 set -x -U QT_QPA_PLATFORMTHEME 'qt5ct'
 
-# common alias
+# alias
 alias rm="rm -i"
 alias cp="cp -i"
 alias mv="mv -i"
