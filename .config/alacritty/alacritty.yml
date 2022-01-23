@@ -68,7 +68,8 @@ font:
         family: Hack
         style: Bold Italic    
     size: 12
-background_opacity: 0.77
+window:
+    opacity: 0.77
 
 
 
