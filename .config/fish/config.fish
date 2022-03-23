@@ -1,6 +1,4 @@
-if status is-interactive
-    # Commands to run in interactive sessions can go here
-end
+#!/usr/bin/env fish
 
 # variables
 set -U fish_greeting ""
@@ -10,17 +8,19 @@ set -x -U XDG_DATA_DIRS /usr/local/share:/usr/share:/var/lib/flatpak/exports/sha
 set -x -U QT_QPA_PLATFORMTHEME 'qt5ct'
 set -x -U MICRO_TRUECOLOR 1
 
-# alias
+# common alias
 alias rm="rm -i"
 alias cp="cp -i"
 alias mv="mv -i"
+alias ls="ls -F --color"
 alias code="code-oss" 
 alias gdb="gdb --tui"
 alias server="python3 -m http.server"
 alias librewolf="flatpak run io.gitlab.librewolf-community"
 alias setbrightness="xrandr --output eDP --brightness"
+alias lock="i3lock -c 282a36" 
 
-# Fish prompt pygmalion theme
+# Fish prompt pygmalion-dracula theme
 function fish_prompt 
   # Cache exit status
   set -l last_status $status
@@ -53,6 +53,11 @@ function fish_prompt
   set -g __fish_git_prompt_show_informative_status true
   set -g __fish_git_prompt_showcolorhints true
 
+  # Python virtual env prompt
+  if set -q VIRTUAL_ENV
+    echo -n -s (set_color -b blue white) "(" (basename "$VIRTUAL_ENV") ")" (set_color normal) " "
+  end
+
   # Color prompt char red for non-zero exit status
   set -l pcolor $bpurple
   if [ $last_status -ne 0 ]
@@ -61,9 +66,7 @@ function fish_prompt
 
   # Top
   echo -n $purple$USER$normal$green@$normal$yellow$__fish_prompt_hostname$normal$red:$normal$green(prompt_pwd)$normal
-  __fish_vcs_prompt
-
-  echo
+  __fish_vcs_prompt;echo 
 
   # Bottom
   echo -n $pcolor$__fish_prompt_char $normal
