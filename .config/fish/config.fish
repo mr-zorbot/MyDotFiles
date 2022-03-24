@@ -1,6 +1,6 @@
 #!/usr/bin/env fish
 
-# variables
+# Variables
 set -U fish_greeting ""
 set -a PATH $HOME/.local/bin
 set -x -U GOPATH $HOME/go
@@ -8,7 +8,7 @@ set -x -U XDG_DATA_DIRS /usr/local/share:/usr/share:/var/lib/flatpak/exports/sha
 set -x -U QT_QPA_PLATFORMTHEME 'qt5ct'
 set -x -U MICRO_TRUECOLOR 1
 
-# common alias
+# Common alias
 alias rm="rm -i"
 alias cp="cp -i"
 alias mv="mv -i"
@@ -73,8 +73,8 @@ function fish_prompt
 end
 
 # Simple file extraction function
-function ex # Usage: $ ex <file>
-    if test -f $argv
+function ex 
+    if test -f $argv # Check if the file exists
         switch $argv
             case '*.tar.bz2'
                 tar xjf $argv
@@ -109,5 +109,6 @@ function ex # Usage: $ ex <file>
         end 
     else
         echo "File $argv not found."
+        echo "Usage: \$ ex <file-name>"
     end
 end 
