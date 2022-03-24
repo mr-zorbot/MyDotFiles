@@ -7,6 +7,7 @@ set -x -U GOPATH $HOME/go
 set -x -U XDG_DATA_DIRS /usr/local/share:/usr/share:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share
 set -x -U QT_QPA_PLATFORMTHEME 'qt5ct'
 set -x -U MICRO_TRUECOLOR 1
+set -x -U EDITOR /bin/micro
 
 # Common alias
 alias rm="rm -i"
