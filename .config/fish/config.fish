@@ -9,7 +9,7 @@ set -x -U QT_QPA_PLATFORMTHEME 'qt5ct'
 set -x -U MICRO_TRUECOLOR 1
 set -x -U EDITOR /bin/micro
 
-# Common alias
+# Common aliases
 alias rm="rm -i"
 alias cp="cp -i"
 alias mv="mv -i"
