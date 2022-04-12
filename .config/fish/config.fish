@@ -22,7 +22,7 @@ alias librewolf="flatpak run io.gitlab.librewolf-community"
 alias setbrightness="xrandr --output eDP --brightness"
 alias lock="i3lock -c 282a36" 
 
-# Fish prompt pygmalion-dracula theme
+# Fish prompt Dracula Theme
 function fish_prompt 
   # Cache exit status
   set -l last_status $status
@@ -107,7 +107,7 @@ function ex
             case '*.tar.zst'
                 unzstd $argv
             case '*'
-                echo "$argv cannot be extracted via ex"
+                echo "$argv can't be extracted via ex"
         end 
     else
         echo "File $argv not found."
