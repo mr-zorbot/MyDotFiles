@@ -10,9 +10,9 @@ super + Return
 super + @space
 	rofi -show drun -show-icons
 
-# Audio controller
+# Network controller
 super + c
-	pavucontrol	
+	nm-connection-editor	
 
 # File manager
 super + a
@@ -26,17 +26,19 @@ super + shift + n
 
 # Text editors
 super + e
-	alacritty -e micro
+	alacritty -e $EDITOR 
 super + shift + e
 	code
+
+# Teams
+super + v
+	teams 
+super + shift + v
+	killall teams
 
 # Print screen
 super + Print
 	flameshot  
-
-# Blanket
-super + b
-	blanket
 
 # Bspwm layout switcher
 super + Tab
@@ -116,7 +118,7 @@ super + {o,i}
 
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}' ; bsp-layout set tall
+	bspc {desktop -f,node -d} '^{1-9,10}' 
 
 #
 # preselect
