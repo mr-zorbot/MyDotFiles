@@ -21,20 +21,24 @@ super + a
 # Web browsers
 super + n
 	librewolf
+
 super + shift + n
 	chromium
 
 # Text editors
 super + e
 	alacritty -e $EDITOR 
+
 super + shift + e
 	code
 
 # Teams
 super + v
-	teams 
-super + shift + v
-	killall teams
+	teams
+
+# Password manager
+super + p
+	keepassxc
 
 # Print screen
 super + Print
