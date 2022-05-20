@@ -18,6 +18,7 @@ alias code="code-oss"
 alias gdb="gdb --tui"
 alias server="python3 -m http.server"
 alias librewolf="flatpak run io.gitlab.librewolf-community"
+alias teams="flatpak run com.github.IsmaelMartinez.teams_for_linux"
 alias setbrightness="xrandr --output eDP --brightness"
 alias lock="i3lock -c 282a36" 
 
