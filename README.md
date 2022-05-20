@@ -14,6 +14,7 @@ Just my personal settings, based on [**Dracula Theme**](https://draculatheme.com
 - [polybar](https://github.com/polybar/polybar)
 - [rofi](https://github.com/davatorium/rofi)
 - [jonaburg-picom](https://github.com/jonaburg/picom)
+- [ytui-music](https://github.com/sudipghimire533/ytui-music)
 
 ## Screenshots 
 ![](https://github.com/Iann-Zorkot/MyDotFiles/blob/master/desktop.png?raw=true)
