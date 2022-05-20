@@ -35,6 +35,10 @@ super + shift + e
 # Teams
 super + v
 	teams
+	
+# YouTube Music
+super + d
+	alacritty -e ytui-music run
 
 # Password manager
 super + p
