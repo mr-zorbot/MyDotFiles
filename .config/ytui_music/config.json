@@ -1,0 +1,99 @@
+{
+  "ShortcutKeys": {
+    "toggle_play": " ",
+    "next": "n",
+    "prev": "p",
+    "start_search": "/",
+    "download": "d",
+    "quit": "c",
+    "forward": ">",
+    "backward": "<",
+    "suffle": "s",
+    "repeat": "r",
+    "view": "v",
+    "favourates_add": "f",
+    "favourates_remove": "u"
+  },
+  "Colors": {
+    "border_idle": [
+      98,
+      114,
+      164
+    ],
+    "border_highlight": [
+      255,
+      121,
+      198
+    ],
+    "list_idle": [
+      248,
+      248,
+      242
+    ],
+    "list_hilight": [
+      139,
+      233,
+      253
+    ],
+    "sidebar_list": [
+      248,
+      248,
+      242
+    ],
+    "block_title": [
+      98,
+      114,
+      164
+    ],
+    "gauge_fill": [
+      255,
+      121,
+      198
+    ],
+    "color_primary": [
+      248,
+      248,
+      242
+    ],
+    "color_secondary": [
+      189,
+      147,
+      249
+    ],
+    "status_text": [
+      98,
+      114,
+      164
+    ]
+  },
+  "Servers": {
+    "list": [
+      "https://ytprivate.com/api/v1",
+      "https://vid.puffyan.us/api/v1",
+      "https://invidious.snopyta.org/api/v1",
+      "https://ytb.trom.tf/api/v1",
+      "https://invidious.namazso.eu/api/v1",
+      "https://invidious.hub.ne.kr/api/v1"
+    ]
+  },
+  "Constants": {
+    "item_per_list": 10,
+    "server_time_out": 30000,
+    "refresh_rate": 900,
+    "seek_forward_secs": 10,
+    "seek_backward_secs": 10,
+    "region": "NP",
+    "search_by_type": [
+      "music:",
+      "playlist:",
+      "artist:"
+    ]
+  },
+  "MpvOptions": {
+    "config_path": "/home/iann/.config/ytui_music"
+  },
+  "Downloads": {
+    "path": "/home/iann/Music",
+    "format": "mp3"
+  }
+}
