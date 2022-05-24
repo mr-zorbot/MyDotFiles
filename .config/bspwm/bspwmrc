@@ -13,6 +13,7 @@ bspc config gapless_monocle      true
 
 bspc rule -a discord desktop='^10' follow=off
 bspc rule -a vlc desktop='^10' follow=off
+bspc rule -a Zathura state=tiled
 
 # Autostart 
 picom --experimental-backend & # aur/picom-jonaburg-git
