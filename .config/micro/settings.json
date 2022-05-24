@@ -1,13 +1,7 @@
 {
     "autosu": true,
-    "colorcolumn": 80,
     "colorscheme": "dracula",
     "diffgutter": true,
-    "eofnewline": false,
-    "fastdirty": true,
-    "ftoptions": false,
-    "ignorecase": false,
-    "matchbrace": false,
     "mkparents": true,
     "pluginchannels": [
         "https://raw.githubusercontent.com/micro-editor/plugin-channel/master/channel.json"
