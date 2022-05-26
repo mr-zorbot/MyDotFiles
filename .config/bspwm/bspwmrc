@@ -16,6 +16,8 @@ bspc rule -a vlc desktop='^10' follow=off
 bspc rule -a Zathura state=tiled
 
 # Autostart 
+#xrandr -s 1360x768 & # VM only
+#picom --no-fading-openclose & # community/picom
 picom --experimental-backend & # aur/picom-jonaburg-git
 nitrogen --restore &
 bash ~/.config/polybar/launch.sh &
