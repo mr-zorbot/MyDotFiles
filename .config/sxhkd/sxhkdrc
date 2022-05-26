@@ -2,6 +2,10 @@
 # wm independent hotkeys
 #
 
+# Hotkeys help
+super + h
+	alacritty -e less $HOME/.config/bspwm/help.txt
+
 # Terminal emulator
 super + Return
 	alacritty
@@ -19,6 +23,9 @@ super + a
 	pcmanfm	
 
 # Web browsers
+#super + n
+#	firefox
+
 super + n
 	librewolf
 
@@ -51,6 +58,7 @@ super + Print
 # Bspwm layout switcher
 super + Tab
 	bsp-layout cycle --layouts tall,wide,grid,tiled
+
 super + shift + Tab
 	bsp-layout remove
 
