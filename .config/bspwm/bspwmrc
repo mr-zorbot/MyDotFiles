@@ -20,6 +20,7 @@ bspc rule -a Zathura state=tiled
 #picom --no-fading-openclose & # community/picom
 picom --experimental-backend & # aur/picom-jonaburg-git
 nitrogen --restore &
+#bash ~/.config/polybar/launch-alt.sh &
 bash ~/.config/polybar/launch.sh &
 
 # Setup tall as default layout
