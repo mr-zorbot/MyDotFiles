@@ -1,0 +1,33 @@
+#     # ####### ####### #    # ####### #     #  #####  
+#     # #     #    #    #   #  #        #   #  #     # 
+#     # #     #    #    #  #   #         # #   #       
+####### #     #    #    ###    #####      #     #####  
+#     # #     #    #    #  #   #          #          # 
+#     # #     #    #    #   #  #          #    #     # 
+#     # #######    #    #    # #######    #     #####                  
+
+by: @Iann-Zorkot
+
+OBS: 'super' == 'Windows Key'
+
+KEYS: 				ACTION:
+super + h 			Show this help
+super + Return			Launch the terminal emulator
+super + space			Launch the program launcher
+super + a			Launch the file manager
+super + n			Launch the web browser
+super + e			Launch the TUI text editor
+super + Print			Launch the print screen tool
+
+super + w 			Close window
+super + Tab			Switch the window manager's layout
+super + Tab			Reset  the window manager's layout
+super + Arrows 			Switch the focused window
+super + Shift + Arrows 		Switch the window position
+super + {1-0} 			Switch between desktops
+super + Shift + {1-0} 		Move window between desktops
+
+super + t 			Tiled window mode (default)
+super + s 			Floating window mode
+super + m 			Maximized window mode
+super + f 			Fullscreen window mode		
