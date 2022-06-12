@@ -5,7 +5,7 @@ pgrep -x sxhkd > /dev/null || sxhkd &
 bspc monitor -d I II III IV V VI VII VIII IX X
 
 bspc config border_width         2
-bspc config window_gap           6
+bspc config window_gap           5
 
 bspc config split_ratio          0.52
 bspc config borderless_monocle   true
@@ -36,7 +36,13 @@ bsp-layout set tall IX &
 bsp-layout set tall X &
 
 # Setup Dracula Theme
+bspc config presel_feedback_color "#6272a4"
 bspc config normal_border_color "#44475a"
+
+# Pink as focus color
 bspc config active_border_color "#bd93f9"
 bspc config focused_border_color "#ff79c6"
-bspc config presel_feedback_color "#6272a4"
+
+# Cyan as focus color
+#bspc config active_border_color "#6272a4"
+#bspc config focused_border_color "#8be9fd"
