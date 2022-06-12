@@ -23,3 +23,12 @@ My configuration files for productivity in [**Linux**](https://github.com/torval
 ![](https://github.com/Iann-Zorkot/MyDotFiles/blob/master/twm.png?raw=true)
 
 ![](https://github.com/Iann-Zorkot/MyDotFiles/blob/master/ytui-dracula.png?raw=true)
+
+![](https://github.com/Iann-Zorkot/MyDotFiles/blob/master/other.png?raw=true)
+
+## Wallpaper credits
+Take a look at this [**art repository**](https://github.com/cypherpunksbr/artes) by [**Cypherpunks Brasil**](https://cypherpunks.com.br/).
+
+## License 
+This repository is licensed under the CC0 1.0 Universal license 
+and the Woody Guthrie open license: Anyone found copying this work without my permission will be considered a great friend of mine, because I don't give a durn.
