@@ -2,13 +2,13 @@
 # wm independent hotkeys
 #
 
-# Hotkeys help
-super + h
-	alacritty -e less $HOME/.config/bspwm/help.txt
-
 # Terminal emulator
 super + Return
 	alacritty
+	
+# Terminal emulator as root
+super + shift + Return
+	alacritty -e sudo -i
 
 # Program launcher
 super + @space
