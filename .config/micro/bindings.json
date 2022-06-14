@@ -1,4 +1,6 @@
 {
+    "Alt-,": "PreviousSplit",
+    "Alt-.": "NextSplit",
     "Alt-/": "lua:comment.comment",
     "Alt-a": "lua:snippets.Accept",
     "Alt-b": "lua:initlua.build",
