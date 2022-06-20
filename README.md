@@ -26,8 +26,11 @@ My configuration files for productivity in [**Linux**](https://github.com/torval
 
 ![](https://github.com/Iann-Zorkot/MyDotFiles/blob/master/other.png?raw=true)
 
-## Wallpaper credits
-Take a look at this [**art repository**](https://github.com/cypherpunksbr/artes) by [**Cypherpunks Brasil**](https://cypherpunks.com.br/).
+## Credits
+- [cypherpunksbr](https://github.com/cypherpunksbr) for the wallpaper
+- [adi1090x](https://github.com/adi1090x) for the base polybar theme
+- [rochacbruno](https://github.com/rochacbruno) for the micro configuration files
+- [distro.tube](https://gitlab.com/dwt1/distro.tube) for the inspiration and recommendations
 
 ## License 
 This repository is licensed under the CC0 1.0 Universal license 
