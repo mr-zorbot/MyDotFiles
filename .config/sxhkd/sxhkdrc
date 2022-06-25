@@ -43,13 +43,13 @@ super + shift + e
 super + v
 	teams
 	
-# YouTube Music
+# Spotify
 super + d
-	alacritty -e ytui-music run
+	killall spotifyd ; spotifyd ; alacritty -e spt
 
 # Password manager
 super + p
-	keepassxc
+	bitwarden-desktop
 
 # Print screen
 super + Print
@@ -57,7 +57,7 @@ super + Print
 
 # Bspwm layout switcher
 super + Tab
-	bsp-layout cycle --layouts tall,wide,grid,tiled
+	bsp-layout next --layouts tall,wide,grid,tiled
 
 super + shift + Tab
 	bsp-layout remove
