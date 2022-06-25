@@ -14,7 +14,7 @@ My configuration files for productivity in [**Linux**](https://github.com/torval
 - [polybar](https://github.com/polybar/polybar)
 - [rofi](https://github.com/davatorium/rofi)
 - [sxhkd](https://github.com/baskerville/sxhkd)
-- [ytui-music](https://github.com/sudipghimire533/ytui-music)
+- [spotify-tui](https://github.com/Rigellute/spotify-tui)
 - [zathura](https://github.com/pwmt/zathura)
 
 ## Screenshots 
@@ -22,7 +22,7 @@ My configuration files for productivity in [**Linux**](https://github.com/torval
 
 ![](https://github.com/Iann-Zorkot/MyDotFiles/blob/master/twm.png?raw=true)
 
-![](https://github.com/Iann-Zorkot/MyDotFiles/blob/master/ytui-dracula.png?raw=true)
+![](https://github.com/Iann-Zorkot/MyDotFiles/blob/master/spotify-tui.png?raw=true)
 
 ![](https://github.com/Iann-Zorkot/MyDotFiles/blob/master/other.png?raw=true)
 
