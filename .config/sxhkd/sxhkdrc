@@ -5,7 +5,7 @@
 # Terminal emulator
 super + Return
 	alacritty
-	
+
 # Terminal emulator as root
 super + shift + Return
 	alacritty -e sudo -i
@@ -14,13 +14,13 @@ super + shift + Return
 super + @space
 	rofi -show drun -show-icons
 
-# Network controller
+# Audio controller
 super + c
-	nm-connection-editor	
+	pavucontrol
 
 # File manager
 super + a
-	pcmanfm	
+	pcmanfm
 
 # Web browsers
 #super + n
@@ -30,19 +30,19 @@ super + n
 	librewolf
 
 super + shift + n
-	chromium
+	brave
 
 # Text editors
 super + e
-	alacritty -e $EDITOR 
+	alacritty -e micro
 
 super + shift + e
-	code
+	alacritty -e lvim
 
 # Teams
 super + v
 	teams
-	
+
 # Spotify
 super + d
 	killall spotifyd ; spotifyd ; alacritty -e spt
@@ -53,7 +53,7 @@ super + p
 
 # Print screen
 super + Print
-	flameshot  
+	flameshot
 
 # Bspwm layout switcher
 super + Tab
@@ -134,7 +134,7 @@ super + {o,i}
 
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
-	bspc {desktop -f,node -d} '^{1-9,10}' 
+	bspc {desktop -f,node -d} '^{1-9,10}'
 
 #
 # preselect
