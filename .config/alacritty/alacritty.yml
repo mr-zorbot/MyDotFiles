@@ -17,7 +17,7 @@ schemes:
       focused_match:
         foreground: '#44475a'
         background: '#ffb86c'
-      bar:
+      footer_bar:
         background: '#282a36'
         foreground: '#f8f8f2'
     line_indicator:
@@ -66,10 +66,8 @@ font:
         style: Italic
     bold_italic:
         family: Hack
-        style: Bold Italic    
+        style: Bold Italic
     size: 12
 window:
     opacity: 0.77
-
-
 
