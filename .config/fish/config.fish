@@ -3,28 +3,32 @@
 # Variables
 set -U fish_greeting ""
 set -a PATH $HOME/.local/bin
+set -a PATH $HOME/.cargo/bin
 set -x -U GOPATH $HOME/go
 set -x -U XDG_DATA_DIRS /usr/local/share:/usr/share:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share
 set -x -U QT_QPA_PLATFORMTHEME 'qt5ct'
 set -x -U MICRO_TRUECOLOR 1
 set -x -U EDITOR /bin/micro
+set -x -U OPENAI_API_KEY 'N/A'
 
 # Common aliases
 alias rm="rm -i"
 alias cp="cp -i"
 alias mv="mv -i"
 alias ls="ls -F --color"
-alias code="code-oss" 
+alias code="code-oss"
 alias gdb="gdb --tui"
 alias server="python3 -m http.server"
 alias setbrightness="xrandr --output eDP --brightness"
-alias lock="i3lock -c 282a36" 
+alias lock="i3lock -c 282a36"
+alias pavucontrol="pavucontrol-qt"
+alias vim="lvim"
 
 # Fish prompt Dracula Theme
-function fish_prompt 
+function fish_prompt
   # Cache exit status
   set -l last_status $status
-   
+
   # Just calculate these once, to save a few cycles when displaying the prompt
   if not set -q __fish_prompt_hostname
     set -g __fish_prompt_hostname (cat /etc/hostname)
@@ -66,14 +70,14 @@ function fish_prompt
 
   # Top
   echo -n $purple$USER$normal$green@$normal$yellow$__fish_prompt_hostname$normal$red:$normal$green(prompt_pwd)$normal
-  __fish_vcs_prompt;echo 
+  __fish_vcs_prompt;echo
 
   # Bottom
   echo -n $pcolor$__fish_prompt_char $normal
 end
 
 # Simple file extraction function
-function ex 
+function ex
     if test -f $argv # Check if the file exists
         switch $argv
             case '*.tar.bz2'
@@ -106,9 +110,9 @@ function ex
                 unzstd $argv
             case '*'
                 echo "$argv can't be extracted via ex"
-        end 
+        end
     else
         echo "File $argv not found."
         echo "Usage: \$ ex <file-name>"
     end
-end 
+end
