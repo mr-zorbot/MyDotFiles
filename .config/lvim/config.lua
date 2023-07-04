@@ -10,6 +10,7 @@ lvim.plugins = {
   "p00f/clangd_extensions.nvim",
   "mfussenegger/nvim-jdtls",
   "olexsmir/gopher.nvim",
+  "sbdchd/neoformat",
   {
   "jackMort/ChatGPT.nvim",
     event = "VeryLazy",
@@ -53,7 +54,13 @@ lvim.lsp.installer.setup.ensure_installed = {
     "grammarly", -- Markdown
     "pyright", -- Python
     "lemminx", -- XML
+    "yamlls", -- Yaml
   }
+
+
+-- Keymap para mapear a tecla F1 para executar o comando :Neoformat
+vim.api.nvim_set_keymap('n', '<F1>', ':Neoformat<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('v', '<F1>', ':Neoformat<CR>', { noremap = true, silent = true })
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
