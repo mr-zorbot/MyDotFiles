@@ -62,6 +62,9 @@ lvim.lsp.installer.setup.ensure_installed = {
 vim.api.nvim_set_keymap('n', '<F1>', ':Neoformat<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<F1>', ':Neoformat<CR>', { noremap = true, silent = true })
 
+-- Keymap para mapear a tecla F2 para executar o comando :ChatGPT
+vim.api.nvim_set_keymap('n', '<F2>', ':ChatGPT<CR>', { noremap = true, silent = true })
+
 lvim.builtin.treesitter.ignore_install = { "haskell" }
 lvim.builtin.treesitter.highlight.enabled = true
 lvim.lsp.installer.setup.automatic_installation = true
