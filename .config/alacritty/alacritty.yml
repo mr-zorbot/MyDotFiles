@@ -6,7 +6,9 @@ schemes:
       foreground: '#f8f8f2'
     cursor:
       text: CellBackground
-      cursor: CellForeground
+      cEdit
+￼
+ursor: CellForeground
     vi_mode_cursor:
       text: CellBackground
       cursor: CellForeground
@@ -67,7 +69,6 @@ font:
     bold_italic:
         family: Hack
         style: Bold Italic
-    size: 12
+    size: 14
 window:
     opacity: 0.77
-
