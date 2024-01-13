@@ -48,13 +48,13 @@ lvim.lsp.installer.setup.ensure_installed = {
     "clangd", -- C/CPP
     "gopls", -- Go
     "jdtls", -- Java
-    "denols", -- Javascript
+    "eslint", -- Javascript
     "jsonls", -- Json
     "lua_ls", -- Lua
     "grammarly", -- Markdown
     "pyright", -- Python
     "lemminx", -- XML
-    "yamlls", -- Yaml
+    "yamlls", -- Yaml 
   }
 
 
