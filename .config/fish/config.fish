@@ -9,7 +9,7 @@ set -x -U XDG_DATA_DIRS /usr/local/share:/usr/share:/var/lib/flatpak/exports/sha
 set -x -U QT_QPA_PLATFORMTHEME 'qt5ct'
 set -x -U MICRO_TRUECOLOR 1
 set -x -U EDITOR /bin/micro
-set -x -U OPENAI_API_KEY 'N/A'
+set -x -U OPENAI_API_KEY 'NOT_TODAY_LOL'
 
 # Common aliases
 alias rm="rm -i"
@@ -23,6 +23,10 @@ alias setbrightness="xrandr --output eDP --brightness"
 alias lock="i3lock -c 282a36"
 alias pavucontrol="pavucontrol-qt"
 alias vim="lvim"
+alias vi="lvim"
+alias hexedit="hexedit --color"
+alias zap="cd $HOME/Documents/zap/ && node app.js"
+alias movie="xset s off && xset -dpms"
 
 # Fish prompt Dracula Theme
 function fish_prompt
@@ -116,3 +120,26 @@ function ex
         echo "Usage: \$ ex <file-name>"
     end
 end
+
+function wttr
+  curl wttr.in
+end
+
+function defang
+  switch $argv
+    case '*@*'
+      echo $argv | sed 's/\./[.]/g; s/@/[at]/g'
+    case '*.*'
+      echo $argv | sed 's/\./[.]/g'
+    case '*:*'
+      echo $argv | sed 's/:/[:]/g'
+  end
+end
+
+#function glossario
+#  grep -E -i "$argv -|$argv .*?\) -" $HOME/glossario-secplus.txt
+#end
+
+#function ir
+# sgpt "Crie um texto de recomendação de mitigação de incidentes separando pelos tópicos: Preparação, Detecção, contenção, erradicação, recuperação e pós-incidente. Quero apenas a recomendação, nenhum texto a mais. Seja bastante técnico em sua resposta e não repita palavras. Nesse caso, o incidente é referente a $argv" --model gpt-4
+#end
