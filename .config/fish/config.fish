@@ -2,82 +2,78 @@
 
 # Variables
 set -U fish_greeting ""
+set -x -U GOPATH $HOME/go
+set -a PATH $HOME/go/bin
 set -a PATH $HOME/.local/bin
 set -a PATH $HOME/.cargo/bin
-set -x -U GOPATH $HOME/go
 set -x -U XDG_DATA_DIRS /usr/local/share:/usr/share:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share
-set -x -U QT_QPA_PLATFORMTHEME 'qt5ct'
+set -x -U QT_QPA_PLATFORMTHEME qt5ct
 set -x -U MICRO_TRUECOLOR 1
-set -x -U EDITOR /bin/micro
-set -x -U OPENAI_API_KEY 'NOT_TODAY_LOL'
+set -x -U EDITOR $HOME/.local/bin/lvim
 
 # Common aliases
 alias rm="rm -i"
 alias cp="cp -i"
 alias mv="mv -i"
 alias ls="ls -F --color"
-alias code="code-oss"
 alias gdb="gdb --tui"
-alias server="python3 -m http.server"
+alias http-server="python3 -m http.server"
 alias setbrightness="xrandr --output eDP --brightness"
 alias lock="i3lock -c 282a36"
-alias pavucontrol="pavucontrol-qt"
 alias vim="lvim"
 alias vi="lvim"
-alias hexedit="hexedit --color"
-alias zap="cd $HOME/Documents/zap/ && node app.js"
-alias movie="xset s off && xset -dpms"
 
 # Fish prompt Dracula Theme
 function fish_prompt
-  # Cache exit status
-  set -l last_status $status
+    # Cache exit status
+    set -l last_status $status
 
-  # Just calculate these once, to save a few cycles when displaying the prompt
-  if not set -q __fish_prompt_hostname
-    set -g __fish_prompt_hostname (cat /etc/hostname)
-  end
-  if not set -q __fish_prompt_char
-    switch (id -u)
-      case 0
-        set -g __fish_prompt_char \u276f\u276f
-      case '*'
-        set -g __fish_prompt_char »
+    # Just calculate these once, to save a few cycles when displaying the prompt
+    if not set -q __fish_prompt_hostname
+        set -g __fish_prompt_hostname (cat /etc/hostname)
     end
-  end
+    if not set -q __fish_prompt_char
+        switch (id -u)
+            case 0
+                set -g __fish_prompt_char \u276f\u276f
+            case '*'
+                set -g __fish_prompt_char »
+        end
+    end
 
-  # Setup colors
-  set -l normal (set_color normal)
-  set -l green (set_color 50fa7b)
-  set -l yellow (set_color f1fa8c)
-  set -l purple (set_color bd93f9)
-  set -l red (set_color ff5555)
-  set -l bpurple (set_color -o bd93f9)
-  set -l bred (set_color -o ff5555)
-  set -l bgreen (set_color -o 50fa7b)
-  set -l bwhite (set_color -o f8f8f2)
+    # Setup colors
+    set -l normal (set_color normal)
+    set -l green (set_color 50fa7b)
+    set -l yellow (set_color f1fa8c)
+    set -l purple (set_color bd93f9)
+    set -l red (set_color ff5555)
+    set -l bpurple (set_color -o bd93f9)
+    set -l bred (set_color -o ff5555)
+    set -l bgreen (set_color -o 50fa7b)
+    set -l bwhite (set_color -o f8f8f2)
 
-  # Configure __fish_git_prompt
-  set -g __fish_git_prompt_show_informative_status true
-  set -g __fish_git_prompt_showcolorhints true
+    # Configure __fish_git_prompt
+    set -g __fish_git_prompt_show_informative_status true
+    set -g __fish_git_prompt_showcolorhints true
 
-  # Python virtual env prompt
-  if set -q VIRTUAL_ENV
-    echo -n -s (set_color -b blue white) "(" (basename "$VIRTUAL_ENV") ")" (set_color normal) " "
-  end
+    # Python virtual env prompt
+    if set -q VIRTUAL_ENV
+        echo -n -s (set_color -b blue white) "(" (basename "$VIRTUAL_ENV") ")" (set_color normal) " "
+    end
 
-  # Color prompt char red for non-zero exit status
-  set -l pcolor $bpurple
-  if [ $last_status -ne 0 ]
-    set pcolor $bred
-  end
+    # Color prompt char red for non-zero exit status
+    set -l pcolor $bpurple
+    if [ $last_status -ne 0 ]
+        set pcolor $bred
+    end
 
-  # Top
-  echo -n $purple$USER$normal$green@$normal$yellow$__fish_prompt_hostname$normal$red:$normal$green(prompt_pwd)$normal
-  __fish_vcs_prompt;echo
+    # Top
+    echo -n $purple$USER$normal$green@$normal$yellow$__fish_prompt_hostname$normal$red:$normal$green(prompt_pwd)$normal
+    __fish_vcs_prompt
+    echo
 
-  # Bottom
-  echo -n $pcolor$__fish_prompt_char $normal
+    # Bottom
+    echo -n $pcolor$__fish_prompt_char $normal
 end
 
 # Simple file extraction function
@@ -122,24 +118,16 @@ function ex
 end
 
 function wttr
-  curl wttr.in
+    curl wttr.in
 end
 
 function defang
-  switch $argv
-    case '*@*'
-      echo $argv | sed 's/\./[.]/g; s/@/[at]/g'
-    case '*.*'
-      echo $argv | sed 's/\./[.]/g'
-    case '*:*'
-      echo $argv | sed 's/:/[:]/g'
-  end
+    switch $argv
+        case '*@*'
+            echo $argv | sed 's/\./[.]/g; s/@/[at]/g'
+        case '*.*'
+            echo $argv | sed 's/\./[.]/g'
+        case '*:*'
+            echo $argv | sed 's/:/[:]/g'
+    end
 end
-
-#function glossario
-#  grep -E -i "$argv -|$argv .*?\) -" $HOME/glossario-secplus.txt
-#end
-
-#function ir
-# sgpt "Crie um texto de recomendação de mitigação de incidentes separando pelos tópicos: Preparação, Detecção, contenção, erradicação, recuperação e pós-incidente. Quero apenas a recomendação, nenhum texto a mais. Seja bastante técnico em sua resposta e não repita palavras. Nesse caso, o incidente é referente a $argv" --model gpt-4
-#end
