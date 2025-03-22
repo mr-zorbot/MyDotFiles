@@ -63,6 +63,12 @@ vim.api.nvim_set_keymap('v', '<F1>', ':Neoformat<CR>',
 vim.api.nvim_set_keymap('n', '<F2>', ':LazyGit<CR>',
                         {noremap = true, silent = true})
 
+-- Keymaps para utilizar o lvim como editor hexadecimal 
+vim.api.nvim_set_keymap('n', '<F3>', ':%!xxd<CR>',
+                        {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<F4>', ':%!xxd -r<CR>',
+                        {noremap = true, silent = true})
+
 lvim.builtin.treesitter.ignore_install = {"haskell"}
 lvim.builtin.treesitter.highlight.enabled = true
 lvim.lsp.installer.setup.automatic_installation = true
