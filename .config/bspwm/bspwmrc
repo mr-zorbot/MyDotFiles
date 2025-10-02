@@ -15,12 +15,10 @@ bspc rule -a Zathura state=tiled
 bspc rule -a pavucontrol-qt state=tiled
 
 # Autostart 
-#xrandr -s 1360x768 & # VM only
-#picom --no-fading-openclose & # community/picom
-picom --experimental-backend & # aur/picom-jonaburg-git
+picom & 
 nitrogen --restore &
-#bash ~/.config/polybar/launch-alt.sh &
 bash ~/.config/polybar/launch.sh &
+blueman-applet &
 
 # Setup tall as default layout
 bsp-layout set tall I &
@@ -39,9 +37,9 @@ bspc config presel_feedback_color "#6272a4"
 bspc config normal_border_color "#44475a"
 
 # Magenta as focus color
-bspc config active_border_color "#bd93f9"
-bspc config focused_border_color "#ff79c6"
+#bspc config active_border_color "#bd93f9"
+#bspc config focused_border_color "#ff79c6"
 
 # Cyan as focus color
-#bspc config active_border_color "#6272a4"
-#bspc config focused_border_color "#8be9fd"
+bspc config active_border_color "#6272a4"
+bspc config focused_border_color "#8be9fd"
