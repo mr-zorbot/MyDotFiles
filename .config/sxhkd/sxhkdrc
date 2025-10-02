@@ -23,29 +23,15 @@ super + a
 	pcmanfm
 
 # Web browsers
-#super + n
-#	firefox
-
 super + n
-	librewolf
+	zen-browser
 
 super + shift + n
 	brave
 
-# Text editors
+# Text editor
 super + e
-	alacritty -e micro
-
-super + shift + e
 	alacritty -e lvim
-
-# Teams
-super + v
-	teams
-
-# Spotify
-super + d
-	killall spotifyd ; spotifyd ; alacritty -e spt
 
 # Password manager
 super + p
