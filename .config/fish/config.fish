@@ -8,7 +8,6 @@ set -a PATH $HOME/.local/bin
 set -a PATH $HOME/.cargo/bin
 set -x -U XDG_DATA_DIRS /usr/local/share:/usr/share:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share
 set -x -U QT_QPA_PLATFORMTHEME qt5ct
-set -x -U MICRO_TRUECOLOR 1
 set -x -U EDITOR $HOME/.local/bin/lvim
 
 # Common aliases
@@ -16,9 +15,6 @@ alias rm="rm -i"
 alias cp="cp -i"
 alias mv="mv -i"
 alias ls="ls -F --color"
-alias gdb="gdb --tui"
-alias http-server="python3 -m http.server"
-alias setbrightness="xrandr --output eDP --brightness"
 alias lock="i3lock -c 282a36"
 alias vim="lvim"
 alias vi="lvim"
