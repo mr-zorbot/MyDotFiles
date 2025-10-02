@@ -21,12 +21,18 @@ lvim.plugins = {
         config = function()
             require("telescope").load_extension("lazygit")
         end
-    }
+      }, {
+        "lervag/vimtex",
+        lazy = false,     -- we don't want to lazy load VimTeX
+        init = function()
+            vim.g.vimtex_view_method = "zathura"
+        end
+      }
 }
 
 lvim.builtin.treesitter.ensure_installed = {
     "bash", "c", "cpp", "go", "javascript", "json", "lua", "python",
-    "typescript", "tsx", "css", "rust", "java", "yaml"
+    "typescript", "tsx", "css", "rust", "java", "yaml", "latex"
 }
 
 lvim.lsp.installer.setup.ensure_installed = {
@@ -41,7 +47,8 @@ lvim.lsp.installer.setup.ensure_installed = {
     "grammarly", -- Markdown
     "pyright", -- Python
     "lemminx", -- XML
-    "yamlls" -- Yaml 
+    "spectral", -- Yaml 
+    "texlab" -- Latex
 }
 
 -- Habilitar o Neoformat 
@@ -71,6 +78,3 @@ vim.api.nvim_set_keymap('n', '<F4>', ':%!xxd -r<CR>',
 
 lvim.builtin.treesitter.ignore_install = {"haskell"}
 lvim.builtin.treesitter.highlight.enabled = true
-lvim.lsp.installer.setup.automatic_installation = true
-vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers,
-                {"clangd", "jdtls", "gopls"})
