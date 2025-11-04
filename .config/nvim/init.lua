@@ -1,15 +1,20 @@
--- Plugins
+--- ============================================================================
+-- PLUGINS
+-- =============================================================================
+
 vim.pack.add({
-    { src = 'https://github.com/Mofiqul/dracula.nvim' },           -- Dracula Theme
-    { src = 'https://github.com/neovim/nvim-lspconfig' },          -- Nvim LSP Config
-    { src = 'https://github.com/mason-org/mason.nvim' },           -- Mason
-    { src = 'https://github.com/mason-org/mason-lspconfig.nvim' }, -- Mason LSP Config
-    { src = 'https://github.com/L3MON4D3/LuaSnip' },               -- LuaSnip
-    { src = 'https://github.com/rafamadriz/friendly-snippets' },   -- Friendly Snippets
-    { src = 'https://github.com/Saghen/blink.cmp' },               -- Blink
-    { src = 'https://github.com/mr-zorbot/simple-runner.nvim' }    -- Simple Runner
+    { src = 'https://github.com/Mofiqul/dracula.nvim' },            -- Dracula Theme
+    { src = 'https://github.com/neovim/nvim-lspconfig' },           -- Nvim LSP Config
+    { src = 'https://github.com/nvim-treesitter/nvim-treesitter' }, -- Treesitter
+    { src = 'https://github.com/mason-org/mason.nvim' },            -- Mason
+    { src = 'https://github.com/mason-org/mason-lspconfig.nvim' },  -- Mason LSP Config
+    { src = 'https://github.com/L3MON4D3/LuaSnip' },                -- LuaSnip
+    { src = 'https://github.com/rafamadriz/friendly-snippets' },    -- Friendly Snippets
+    { src = 'https://github.com/Saghen/blink.cmp' },                -- Blink
+    { src = 'https://github.com/mr-zorbot/simple-runner.nvim' }     -- Simple Runner
 })
 
+-- Makes simple-runner use Radare2 as debugger and Zathura to view documents
 require("simple-runner").setup({
     filetype = {
         c = { debug = "r2 -d /tmp/$fileNameWithoutExt" },
@@ -18,6 +23,52 @@ require("simple-runner").setup({
         rust = { debug = "r2 -d target/debug/$fileNameWithoutExt" },
         tex = { run = "zathura /tmp/$fileNameWithoutExt.pdf" },
         markdown = { run = "zathura /tmp/$fileNameWithoutExt.pdf" },
+    },
+})
+
+-- Uses Treesitter to improve highlighting
+require("nvim-treesitter.configs").setup({
+    auto_install = true,
+    highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = true,
+    },
+})
+
+-- Loads VSCode-style snippets via LuaSnip and sets up the Blink completion plugin.
+require("luasnip.loaders.from_vscode").lazy_load()
+require("blink.cmp").setup({
+    fuzzy = {
+        implementation = "lua",
+    },
+
+    keymap = {
+        preset = 'enter',
+
+        ['<S-Tab>'] = { 'select_prev', 'fallback' },
+        ['<Tab>'] = { 'select_next', 'fallback' },
+    },
+
+    completion = {
+        list = {
+            selection = {
+                preselect = false,
+                auto_insert = true,
+            },
+        },
+    },
+
+    signature = { enabled = true },
+})
+
+-- Install LSP servers using Mason
+require("mason").setup()
+require("mason-lspconfig").setup({
+    ensure_installed = {
+        "pylsp",  -- Python
+        "lua_ls", -- Lua
+        "bashls", -- Bash
+        "clangd"  -- C/CPP
     },
 })
 
@@ -158,7 +209,7 @@ vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
 
 -- Quick file navigation
-vim.keymap.set("n", "<leader>e", ":25Lexplore<CR>", { desc = "Open file explorer" })
+vim.keymap.set("n", "<leader>a", ":25Lexplore<CR>", { desc = "Open file explorer" })
 vim.keymap.set("n", "<leader>ff", ":find ", { desc = "Find file" })
 
 -- Better J behavior
@@ -177,9 +228,9 @@ vim.api.nvim_set_keymap('n', '<leader>h', ':%!xxd<CR>', { noremap = true, silent
 vim.api.nvim_set_keymap('n', '<leader>hr', ':%!xxd -r<CR>', { noremap = true, silent = true })
 
 -- simple-runner shortcuts
-vim.api.nvim_set_keymap('n', '<leader>c', ':CompileFile<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>r', ':RunFile<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>d', ':DebugFile<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>cf', ':CompileFile<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>rf', ':RunFile<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>df', ':DebugFile<CR>', { noremap = true, silent = true })
 
 -- ============================================================================
 -- USEFUL FUNCTIONS
@@ -281,6 +332,59 @@ if vim.fn.isdirectory(undodir) == 0 then
     vim.fn.mkdir(undodir, "p")
 end
 
+-- Defang URLs, IPs and e-mails
+local function defang_text(text)
+  -- hxxp / hxxps
+  text = text:gsub("https?://", function(proto)
+    return proto:gsub("http", "hxxp")
+  end)
+
+  -- "." -> "[.]"
+  text = text:gsub("%.", "[.]")
+
+  -- ":" -> "[:]"
+  text = text:gsub(":", "[:]")
+
+  -- "@" -> "[@]"
+  text = text:gsub("@", "[@]")
+
+  return text
+end
+
+-- Defang selected text
+local function defang_selection()
+  local bufnr = 0
+
+  -- Normalize visual range
+  local start = vim.fn.getpos("v")
+  local finish = vim.fn.getpos(".")
+
+  -- Normalize inverted selection
+  if start[2] > finish[2] or (start[2] == finish[2] and start[3] > finish[3]) then
+    start, finish = finish, start
+  end
+
+  local s_line = start[2] - 1
+  local s_col  = start[3] - 1
+  local e_line = finish[2] - 1
+  local e_col  = finish[3] - 1
+
+  local text = vim.api.nvim_buf_get_text(bufnr, s_line, s_col, e_line, e_col + 1, {})
+  if not text then return end
+
+  text = table.concat(text, "\n")
+
+  local defanged = defang_text(text)
+  local new_lines = vim.split(defanged, "\n")
+
+  -- Replace the text
+  vim.api.nvim_buf_set_text(bufnr, s_line, s_col, e_line, e_col + 1, new_lines)
+
+  vim.notify("✅ Defanged")
+end
+
+vim.keymap.set("v", "<leader>df", defang_selection, { desc = "Defang selected text" })
+
 -- ============================================================================
 -- FLOATING TERMINAL
 -- ============================================================================
@@ -366,7 +470,7 @@ local function FloatingTerminal()
 end
 
 -- Key mappings
-vim.keymap.set("n", "<leader>tt", FloatingTerminal, { noremap = true, silent = true, desc = "Toggle floating terminal" })
+vim.keymap.set("n", "<leader><CR>", FloatingTerminal, { noremap = true, silent = true, desc = "Toggle floating terminal" })
 vim.keymap.set("t", "<Esc>", function()
     if terminal_state.is_open then
         vim.api.nvim_win_close(terminal_state.win, false)
@@ -566,17 +670,6 @@ setup_dynamic_statusline()
 -- LSP
 -- ============================================================================
 
--- Install LSP servers using Mason
-require("mason").setup()
-require("mason-lspconfig").setup({
-    ensure_installed = {
-        "pyright", -- Python
-        "lua_ls",  -- Lua
-        "bashls",  -- Bash
-        "clangd"   -- C/CPP
-    },
-})
-
 -- Disable annoying warnings when editing NVIM related Lua files.
 vim.lsp.config("lua_ls", {
     settings = {
@@ -593,7 +686,6 @@ vim.lsp.config("lua_ls", {
 -- Configures Neovim's diagnostic display settings.
 vim.diagnostic.config({
     virtual_lines = true,
-    -- virtual_text = true,
     underline = true,
     update_in_insert = false,
     severity_sort = true,
@@ -631,16 +723,4 @@ vim.api.nvim_create_autocmd('LspAttach', {
             })
         end
     end,
-})
-
--- Loads VSCode-style snippets via LuaSnip and sets up the Blink completion plugin.
-require("luasnip.loaders.from_vscode").lazy_load()
-require("blink.cmp").setup({
-    fuzzy = {
-        implementation = "lua",
-    },
-
-    keymap = {
-        preset = 'super-tab',
-    },
 })
