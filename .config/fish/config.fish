@@ -3,12 +3,11 @@
 # Variables
 set -U fish_greeting ""
 set -x -U GOPATH $HOME/go
-set -x -U JDK_JAVA_OPTIONS "--add-modules javafx.controls,javafx.fxml"
 set -a PATH $HOME/go/bin
 set -a PATH $HOME/.local/bin
 set -a PATH $HOME/.cargo/bin
 set -x -U XDG_DATA_DIRS /usr/local/share:/usr/share:/var/lib/flatpak/exports/share:$HOME/.local/share/flatpak/exports/share
-set -x -U QT_QPA_PLATFORMTHEME qt6ct
+set -x -U QT_QPA_PLATFORMTHEME wayland
 set -x -U EDITOR /usr/bin/nvim
 set -x -U STEAMLIBRARY $HOME/.local/share/Steam
 
@@ -18,14 +17,9 @@ alias cp="cp -i"
 alias mv="mv -i"
 alias ls="ls -F --color"
 alias gdb="gdb --tui"
-alias http-server="python3 -m http.server"
-alias setbrightness="xrandr --output eDP --brightness"
-alias lock="i3lock -c 282a36"
 alias vim="nvim"
 alias vi="nvim"
 alias nc="ncat"
-alias autopsy="wmname LG3D && JAVA_HOME=/usr/lib/jvm/liberica-jdk-17-full/ /usr/bin/autopsy"
-alias iped="wmname LG3D && java -jar $HOME/.aur/iped-4.2.2/iped.jar"
 
 # Fish prompt Dracula Theme
 function fish_prompt
@@ -123,15 +117,4 @@ end
 
 function wttr
     curl wttr.in
-end
-
-function defang
-    switch $argv
-        case '*@*'
-            echo $argv | sed 's/\./[.]/g; s/@/[at]/g'
-        case '*.*'
-            echo $argv | sed 's/\./[.]/g'
-        case '*:*'
-            echo $argv | sed 's/:/[:]/g'
-    end
 end
