@@ -1,7 +1,0 @@
-general.import = ["$HOME/.config/alacritty/dracula.toml"]
-
-[window]
-opacity = 0.97
-
-[font]
-size = 12
