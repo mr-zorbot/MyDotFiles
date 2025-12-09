@@ -1,0 +1,43 @@
+@import url("./colors.css");
+* {
+    border: none;
+    border-radius: 30px;
+    font-family: JetBrainsMono;
+    font-size: 11pt;
+    min-height: 0;
+}
+window#waybar {
+    opacity: 0.8;
+    background: @background-darker;
+    color: @foreground;
+    border-bottom: 0px solid @background;
+}
+#workspaces button {
+    padding: 1 6px;
+    background: @background-darker;
+    color: @pink;
+}
+#workspaces button:hover {
+    box-shadow: inherit;
+    text-shadow: inherit;
+    background: @selection;
+}
+#workspaces button.empty {
+    background: @background-darker;
+    color: @foreground
+}
+#workspaces button.focused,
+#workspaces button.active {
+    background: @background;
+    color: @purple
+}
+#workspaces button.urgent {
+    background: @background-darker;
+    color: @red
+}
+#taskbar button.active {
+    background: @background;
+}
+#clock {
+    padding: 0 4px;
+}
