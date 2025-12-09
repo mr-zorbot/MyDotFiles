@@ -1,0 +1,111 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 28,
+  "spacing": 4,
+  "modules-left": [
+    "custom/power",
+    "hyprland/workspaces"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "bluetooth",
+    "custom/space",
+    "battery",
+    "custom/space",
+    "pulseaudio",
+    "custom/space",
+    "network",
+    "custom/space",
+    "tray"
+  ],
+  "clock": {
+    "interval": 1,
+    "format": "<b>{:%d/%m/%Y %H:%M:%S}</b>",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+  },
+  "tray": {
+    "spacing": 4
+  },
+  "pulseaudio": {
+    "format": "{volume}% {icon} {format_source}",
+    "format-bluetooth": "{volume}% {icon} {format_source}",
+    "format-bluetooth-muted": "<span color='#FF5555'> {icon}</span> {format_source}",
+    "format-muted": "<span color='#FF5555'> </span>{format_source}",
+    "format-source": "{volume}% ",
+    "format-source-muted": "<span color='#FF5555'></span>",
+    "format-icons": {
+      "headphone": "󰋋",
+      "hands-free": "󰋎",
+      "headset": "󰋎",
+      "phone": "",
+      "portable": "",
+      "car": "",
+      "default": [
+        "",
+        "",
+        ""
+      ]
+    },
+    "on-click": "flatpak run org.pulseaudio.pavucontrol"
+  },
+  "bluetooth": {
+    "format": "",
+    "format-disabled": "<span color='#FF5555'>󰂲</span>",
+    "format-connected": "<span color='#50FA7B'></span>",
+    "tooltip-format": "Devices connected: {num_connections}",
+    "on-click": "blueman-manager"
+  },
+  "network": {
+    "format-wifi": " {signalStrength}%",
+    "format-ethernet": "{ipaddr}/{cidr} 󰈀",
+    "tooltip-format": "{ifname} via {gwaddr} 󰱓",
+    "format-linked": "{ifname} (No IP) 󰅛",
+    "format-disconnected": "<span color='#FF5555'>󰅛</span>",
+    "on-click": "nm-connection-editor"
+  },
+  "battery": {
+    "states": {
+      "good": 95,
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "{capacity}% {icon}",
+    "format-full": "{capacity}% {icon}",
+    "format-charging": "{capacity}% ",
+    "format-plugged": "{capacity}% ",
+    "format-alt": "{time} {icon}",
+    "format-icons": [
+      "<span color='#FF5555'></span>",
+      "<span color='#FFB86C'</span>",
+      "<span color='#F1FA8C'</span>",
+      "",
+      "<span color='#50FA7B'></span>"
+    ]
+  },
+  "hyprland/workspaces": {
+    "persistent-workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+      "6": [],
+      "7": [],
+      "8": [],
+      "9": [],
+      "10": []
+    }
+  },
+  "custom/power": {
+    "format": "<span color='#FF5555'>  </span>",
+    "on-click": "nwg-bar",
+    "tooltip": false
+  },
+  "custom/space": {
+    "format": " ",
+    "tooltip": false
+  }
+}
