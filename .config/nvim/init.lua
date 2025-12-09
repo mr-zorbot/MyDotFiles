@@ -14,15 +14,13 @@ vim.pack.add({
     { src = 'https://github.com/mr-zorbot/simple-runner.nvim' }     -- Simple Runner
 })
 
--- Makes simple-runner use Radare2 as debugger and Zathura to view documents
+-- Makes simple-runner use Radare2 as debugger
 require("simple-runner").setup({
     filetype = {
         c = { debug = "r2 -d /tmp/$fileNameWithoutExt" },
         cpp = { debug = "r2 -d /tmp/$fileNameWithoutExt" },
         go = { debug = "r2 -d /tmp/$fileNameWithoutExt" },
         rust = { debug = "r2 -d target/debug/$fileNameWithoutExt" },
-        tex = { run = "zathura /tmp/$fileNameWithoutExt.pdf" },
-        markdown = { run = "zathura /tmp/$fileNameWithoutExt.pdf" },
     },
 })
 
@@ -209,8 +207,8 @@ vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
 
 -- Quick file navigation
-vim.keymap.set("n", "<leader>a", ":25Lexplore<CR>", { desc = "Open file explorer" })
-vim.keymap.set("n", "<leader>ff", ":find ", { desc = "Find file" })
+vim.keymap.set("n", "<leader>fm", ":25Lexplore<CR>", { desc = "Open file manager" })
+vim.keymap.set("n", "<leader>a", ":FZF<CR>", { desc = "Open FZF" })
 
 -- Better J behavior
 vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position" })
@@ -334,53 +332,53 @@ end
 
 -- Defang URLs, IPs and e-mails
 local function defang_text(text)
-  -- hxxp / hxxps
-  text = text:gsub("https?://", function(proto)
-    return proto:gsub("http", "hxxp")
-  end)
+    -- hxxp / hxxps
+    text = text:gsub("https?://", function(proto)
+        return proto:gsub("http", "hxxp")
+    end)
 
-  -- "." -> "[.]"
-  text = text:gsub("%.", "[.]")
+    -- "." -> "[.]"
+    text = text:gsub("%.", "[.]")
 
-  -- ":" -> "[:]"
-  text = text:gsub(":", "[:]")
+    -- ":" -> "[:]"
+    text = text:gsub(":", "[:]")
 
-  -- "@" -> "[@]"
-  text = text:gsub("@", "[@]")
+    -- "@" -> "[@]"
+    text = text:gsub("@", "[@]")
 
-  return text
+    return text
 end
 
 -- Defang selected text
 local function defang_selection()
-  local bufnr = 0
+    local bufnr = 0
 
-  -- Normalize visual range
-  local start = vim.fn.getpos("v")
-  local finish = vim.fn.getpos(".")
+    -- Normalize visual range
+    local start = vim.fn.getpos("v")
+    local finish = vim.fn.getpos(".")
 
-  -- Normalize inverted selection
-  if start[2] > finish[2] or (start[2] == finish[2] and start[3] > finish[3]) then
-    start, finish = finish, start
-  end
+    -- Normalize inverted selection
+    if start[2] > finish[2] or (start[2] == finish[2] and start[3] > finish[3]) then
+        start, finish = finish, start
+    end
 
-  local s_line = start[2] - 1
-  local s_col  = start[3] - 1
-  local e_line = finish[2] - 1
-  local e_col  = finish[3] - 1
+    local s_line = start[2] - 1
+    local s_col  = start[3] - 1
+    local e_line = finish[2] - 1
+    local e_col  = finish[3] - 1
 
-  local text = vim.api.nvim_buf_get_text(bufnr, s_line, s_col, e_line, e_col + 1, {})
-  if not text then return end
+    local text   = vim.api.nvim_buf_get_text(bufnr, s_line, s_col, e_line, e_col + 1, {})
+    if not text then return end
 
-  text = table.concat(text, "\n")
+    text = table.concat(text, "\n")
 
-  local defanged = defang_text(text)
-  local new_lines = vim.split(defanged, "\n")
+    local defanged = defang_text(text)
+    local new_lines = vim.split(defanged, "\n")
 
-  -- Replace the text
-  vim.api.nvim_buf_set_text(bufnr, s_line, s_col, e_line, e_col + 1, new_lines)
+    -- Replace the text
+    vim.api.nvim_buf_set_text(bufnr, s_line, s_col, e_line, e_col + 1, new_lines)
 
-  vim.notify("✅ Defanged")
+    vim.notify("✅ Defanged")
 end
 
 vim.keymap.set("v", "<leader>df", defang_selection, { desc = "Defang selected text" })
@@ -470,7 +468,8 @@ local function FloatingTerminal()
 end
 
 -- Key mappings
-vim.keymap.set("n", "<leader><CR>", FloatingTerminal, { noremap = true, silent = true, desc = "Toggle floating terminal" })
+vim.keymap.set("n", "<leader><CR>", FloatingTerminal,
+    { noremap = true, silent = true, desc = "Toggle floating terminal" })
 vim.keymap.set("t", "<Esc>", function()
     if terminal_state.is_open then
         vim.api.nvim_win_close(terminal_state.win, false)
@@ -686,6 +685,7 @@ vim.lsp.config("lua_ls", {
 -- Configures Neovim's diagnostic display settings.
 vim.diagnostic.config({
     virtual_lines = true,
+    -- virtual_text = true,
     underline = true,
     update_in_insert = false,
     severity_sort = true,
